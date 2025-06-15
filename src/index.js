@@ -1,10 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const taskList = new TaskList();
+  const form = document.getElementById("create-task-form");
+  const taskList = document.getElementById("tasks");
 
-  const listContainer = document.getElementById("list");
-  const renderApp = () => (listContainer.innerHTML = taskList.render());
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-  // Add Form Behavior Here!
+    const input = document.getElementById("new-task-description");
+    const task = input.value;
 
-  renderApp()
+    const li = document.createElement("li");
+    li.textContent = task;
+
+    taskList.appendChild(li);
+    form.reset();
+  });
 });
